@@ -1,15 +1,28 @@
-import { Avatar, Card, Text } from "../components/atoms";
+import { ListItem } from "../components/molecules/list-item";
 
 export default function Home() {
   return (
-    <Card>
-      <Avatar
-        round={true}
-        src={
-          "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png"
-        }
+    <div>
+      <ListItem
+        name="Butterfly"
+        type="fly"
+        avatar="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/12.png"
       />
-      <Text align="auto" weidth="bolder" fontSize={10} keyText="test" />
-    </Card>
+      <ListItem
+        name="weedle"
+        type="fly"
+        avatar="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/13.png"
+      />
+      <ListItem
+        name="weedle"
+        type="fly"
+        avatar="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/14.png"
+      />
+      <ListItem
+        name="weedle"
+        type="fly"
+        avatar="https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/16.png"
+      />
+    </div>
   );
 }
