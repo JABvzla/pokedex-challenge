@@ -37,9 +37,9 @@ const StyledListItem = styled(Card)`
   left: 0;
   top: 0;
 
-  width: 100px;
-  height: 120px;
-  margin: 10px;
+  width: ${(props) => props.theme.unit(20)};
+  height: ${(props) => props.theme.unit(22)};
+  margin: ${(props) => props.theme.unit(1)};
 
   ${(props: StyledListItemProps) =>
     !props.isOpen &&

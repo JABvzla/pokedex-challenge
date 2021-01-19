@@ -15,8 +15,7 @@ const StyledCard = Styled.div`
   align-items: center;
   width: fit-content;
   padding: 10px;
-  box-shadow: 5px 5px 11px -1px rgba(181,181,181,0.67);
-  
+  ${(p) => p.theme.shadown1};
   border-radius: ${(p) => p.theme.cardRound};
   background: ${(p) => p.theme.bg};
   ${(props: CardProps) =>

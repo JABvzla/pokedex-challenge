@@ -16,7 +16,7 @@ export function Text(props: TextProps) {
   return <StyledText {...props}>{text}</StyledText>;
 }
 
-const StyledText = Styled.div`
+const StyledText = Styled.span`
   font-size: ${({ fontSize }: TextProps) => fontSize};
   align: ${({ align }: TextProps) => align};
   font-weight: ${({ weidth }: TextProps) => weidth};
