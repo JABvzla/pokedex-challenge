@@ -1,6 +1,6 @@
 import { AppProps } from "next/dist/next-server/lib/router/router";
 import { ThemeProvider } from "styled-components";
-import "../styles/globals.css";
+import "../i18n";
 import { LightTheme } from "../theme";
 
 function MyApp({ Component, pageProps }: AppProps) {
