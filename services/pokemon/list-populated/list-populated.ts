@@ -5,8 +5,10 @@ export interface PokemonListPopulatedResponse {
   results: Pokemon[];
 }
 
-export async function getPokemonListPopulated(): Promise<Pokemon[]> {
-  const pokemonList = await getPokemonList(0);
+export async function getPokemonListPopulated(
+  offset: number
+): Promise<Pokemon[]> {
+  const pokemonList = await getPokemonList(offset);
   const result = await Promise.all(
     pokemonList.results.map((pokemon) => axios.get(pokemon.url))
   );

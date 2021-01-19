@@ -5,6 +5,7 @@ import { getPokemonListPopulated } from "../services/pokemon";
 
 interface HomeProps {
   pokemons: Pokemon[];
+  initialPage: number;
 }
 
 const usePagination = (p: number = 1) => {
@@ -19,27 +20,30 @@ const usePagination = (p: number = 1) => {
   return { page, next, prev };
 };
 
-export default function Home({ pokemons }: HomeProps) {
-  const { page, next, prev } = usePagination();
-  // const params =  process.browser? new URLSearchParams(window.location.search) : { get: () => null};
-  // const pParam = params.get('p') || 1;
+export default function Home({ pokemons, initialPage }: HomeProps) {
+  const { page, next, prev } = usePagination(initialPage);
 
-  const paginated = pokemons.slice(
-    (page - 1) * PAGIANTE_LIMIT,
-    page * PAGIANTE_LIMIT
-  );
   return (
     <div>
-      <Grid pokemons={paginated} page={page} onNext={next} onPrev={prev} />
+      <Grid pokemons={pokemons} page={page} onNext={next} onPrev={prev} />
     </div>
   );
 }
 
-export const getStaticProps = async () => {
-  const allPokemons = await getPokemonListPopulated();
+interface HomeServerSideProps {
+  query: {
+    p?: string;
+  };
+}
+
+export const getServerSideProps = async (context: HomeServerSideProps) => {
+  const { p = 1 } = context.query;
+  const pokemons = await getPokemonListPopulated(+p * PAGIANTE_LIMIT);
+
   return {
     props: {
-      pokemons: allPokemons,
+      initialPage: p,
+      pokemons,
     },
   };
 };

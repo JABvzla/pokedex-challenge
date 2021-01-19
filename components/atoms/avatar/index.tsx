@@ -1,7 +1,6 @@
 import Styled from "styled-components";
 interface AvatarProps {
   src: string;
-  background?: string;
   round?: boolean;
 }
 
@@ -10,9 +9,5 @@ export function Avatar(props: AvatarProps) {
 }
 
 const StyledAvatar = Styled.img`
-  background: ${(props) => props.theme.placeholder};
-  ${(props: AvatarProps) => props.round && "border-radius: 100%"};
-  ${(props: AvatarProps) =>
-    props.background && `background: ${props.background};`}
-
+  ${(props: AvatarProps) => props.round && "border-radius: 100%"};  
 `;

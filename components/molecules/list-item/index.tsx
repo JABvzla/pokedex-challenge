@@ -1,32 +1,33 @@
-import { useState } from "react";
 import styled from "styled-components";
-import { Avatar, Card, Text, DetailCard } from "../../atoms";
+import { getColorByType } from "../../../services/pokemon";
+import { Avatar, Card, Text } from "../../atoms";
 
 interface ListItemProps {
   type: string;
   name: string;
   avatar: string;
+  selected: boolean;
+  onSelect?: (id: number) => void;
 }
 
 export function ListItem(props: ListItemProps) {
-  const [isOpen, setIsOpen] = useState(false);
-  const toggleDetail = () => setIsOpen(!isOpen);
   return (
-    <StyledListItem background={"#aac"} isOpen={isOpen} onClick={toggleDetail}>
-      <Avatar src={props.avatar} background={"transparent"} />
-      <Text align="auto" weidth="bolder" fontSize={10}>
-        {props.name}
+    <StyledListItem
+      background={getColorByType(props.type)}
+      selected={props.selected}
+      onClick={props.onSelect}
+    >
+      <Avatar src={props.avatar} />
+      <Text align="auto" weidth="bold" fontSize={10}>
+        {props.name.toUpperCase()}
       </Text>
-      <DetailCard isOpen={isOpen}>
-        Habilidades descripciones imagenes
-      </DetailCard>
     </StyledListItem>
   );
 }
 
 interface StyledListItemProps {
-  isOpen: boolean;
-  onClick?: () => void;
+  selected: boolean;
+  onClick?: (id: number) => void;
 }
 
 const StyledListItem = styled(Card)`
@@ -36,13 +37,10 @@ const StyledListItem = styled(Card)`
   position: relative;
   left: 0;
   top: 0;
-
-  width: ${(props) => props.theme.unit(20)};
-  height: ${(props) => props.theme.unit(22)};
   margin: ${(props) => props.theme.unit(1)};
 
   ${(props: StyledListItemProps) =>
-    !props.isOpen &&
+    !props.selected &&
     `
     &:hover {
       transform: scale(1.1);
@@ -50,14 +48,10 @@ const StyledListItem = styled(Card)`
 `}
 
   ${(props: StyledListItemProps) =>
-    !!props.isOpen &&
+    !!props.selected &&
     `
-    left: 50%;
-    top: 20%;
-    transform: translateX(-50%);
-    
-    width: 200px;
-    height: 200px;    
-  
+    z-index: 999;
+    transform: scale(1.2);
+    top: -10px;
   `}
 `;
