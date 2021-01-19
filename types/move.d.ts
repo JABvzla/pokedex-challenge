@@ -1,4 +1,4 @@
-declare global {
+export declare global {
   interface Move {
     move: {
       name: string;

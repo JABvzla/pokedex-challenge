@@ -1,4 +1,4 @@
-declare global {
+export declare global {
   interface Sprites {
     back_female: string;
     back_shiny_female: string;

@@ -1,4 +1,4 @@
-declare global {
+export declare global {
   interface Ability {
     is_hidden: boolean;
     slot: number;
