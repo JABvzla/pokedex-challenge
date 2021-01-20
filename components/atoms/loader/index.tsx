@@ -74,6 +74,7 @@ const StyledLoader = styled.div`
   }
   & .pokeballs > img {
     width: 50px;
+    height: 50px;
     animation-name: bounce;
     animation-iteration-count: infinite;
     animation-duration: 1.5s;
@@ -95,7 +96,7 @@ const StyledLoader = styled.div`
     & > img {
       opacity: 0; 
     }
-    overflow: inherit;
+    overflow: auto;
 
   `}
 `;

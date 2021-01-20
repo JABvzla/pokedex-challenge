@@ -43,33 +43,31 @@ export default function PokeDex({ pokemons, page }: PokeDexProps) {
 
   return (
     <Loader visible={loaderVisible}>
-      <div>
-        <Head>
-          <title>Pokedex Page: {page}</title>
-          <meta
-            name="viewport"
-            content="initial-scale=0.8, maximum-scale=0.8, minimum-scale=0.8, width=500"
-          />
-        </Head>
-        <StyledContainer background={backgroundColor}>
-          <Toggle
-            text={language}
-            onToggle={toggleLanguage}
-            enabled={language === "en"}
-          />
-          <DetailCard selected={selected != -1} pokemon={pokemons[selected]} />
-          <Grid
-            pokemons={pokemons}
-            page={page}
-            onNext={() => navigate(+page + 1)}
-            onPrev={() => navigate(+page - 1)}
-            selected={selected}
-            onSelect={onSelect}
-            onNavigate={navigate}
-          />
-          <MadeBy visible={selected != -1} />
-        </StyledContainer>
-      </div>
+      <Head>
+        <title>Pokedex Page: {page}</title>
+        <meta
+          name="viewport"
+          content="initial-scale=0.8, maximum-scale=0.8, minimum-scale=0.8, target-densitydpi=device-dpi, user-scalable=no"
+        />
+      </Head>
+      <StyledContainer background={backgroundColor}>
+        <Toggle
+          text={language}
+          onToggle={toggleLanguage}
+          enabled={language === "en"}
+        />
+        <DetailCard selected={selected != -1} pokemon={pokemons[selected]} />
+        <Grid
+          pokemons={pokemons}
+          page={page}
+          onNext={() => navigate(+page + 1)}
+          onPrev={() => navigate(+page - 1)}
+          selected={selected}
+          onSelect={onSelect}
+          onNavigate={navigate}
+        />
+        <MadeBy visible={selected != -1} />
+      </StyledContainer>
     </Loader>
   );
 }
