@@ -25,7 +25,7 @@ export function Loader({ visible, children }: LoaderProps) {
           }
         />
       </div>
-      <div className="content">{!visible && children}</div>
+      <div className="content">{children}</div>
     </StyledLoader>
   );
 }
@@ -92,10 +92,12 @@ const StyledLoader = styled.div`
     & > .content {
       transition: all 0.5s;
       opacity: 1;
+      overflow: auto;
     }
 
     & > img {
       opacity: 0; 
     }
+    overflow: auto;
   `}
 `;
