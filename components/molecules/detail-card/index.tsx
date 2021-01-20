@@ -18,7 +18,12 @@ export const DetailCard = ({ pokemon, selected }: DetailCardProps) => {
             {pokemon.name.toUpperCase()}
           </Text>
 
-          <Text keyText="Types" fontSize="1.3rem" align={"center"} />
+          <Text
+            keyText="Types"
+            fontSize="1.3rem"
+            align={"center"}
+            weidth="normal"
+          />
           <TagsContainer>
             {pokemon.types.map((t) => (
               <StyledTag align={"center"} weidth={"100"} fontSize={"0.7rem"}>

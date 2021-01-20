@@ -3,7 +3,7 @@ import { getColorByType } from "../../../services/pokemon";
 import { Avatar, Card, Text } from "../../atoms";
 
 interface ListItemProps {
-  type: string;
+  type: TypeName;
   name: string;
   avatar: string;
   selected: boolean;

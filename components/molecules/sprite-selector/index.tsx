@@ -22,13 +22,17 @@ export const SpriteSelector = ({ pokemon }: SpriteSelectorProps) => {
 
   return (
     <SpriteSelectorContainer>
-      <BigAvatar src={pokemon.sprites[`${direction}_${color}`]} />
+      <BigAvatar src={(pokemon.sprites as any)[`${direction}_${color}`]} />
       <ButtonContainer>
         <SmallButton color={"white"} onClick={changeColor}>
-          <SmallAvatar src={pokemon.sprites[`${direction}_${invertedColor}`]} />
+          <SmallAvatar
+            src={(pokemon.sprites as any)[`${direction}_${invertedColor}`]}
+          />
         </SmallButton>
         <SmallButton color={"white"} onClick={changeDirection}>
-          <SmallAvatar src={pokemon.sprites[`${invertedDirection}_${color}`]} />
+          <SmallAvatar
+            src={(pokemon.sprites as any)[`${invertedDirection}_${color}`]}
+          />
         </SmallButton>
       </ButtonContainer>
     </SpriteSelectorContainer>

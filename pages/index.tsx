@@ -15,7 +15,7 @@ interface ServerSidePropResult<T> {
 
 export const getServerSideProps = async (
   context: HomeServerSideProps
-): ServerSidePropResult<PokeDexProps> => {
+): Promise<ServerSidePropResult<PokeDexProps>> => {
   const { p = 1 } = context.query;
   const page: number = p <= 0 || isNaN(+p) ? 1 : +p;
   const result = await getPokemonListPopulated((page - 1) * PAGIANTE_LIMIT);
