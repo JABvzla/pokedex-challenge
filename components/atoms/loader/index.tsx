@@ -25,7 +25,7 @@ export function Loader({ visible, children }: LoaderProps) {
           }
         />
       </div>
-      <div className="content">{children}</div>
+      <div className="content">{!visible && children}</div>
     </StyledLoader>
   );
 }
