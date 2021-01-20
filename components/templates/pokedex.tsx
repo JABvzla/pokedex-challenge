@@ -36,7 +36,7 @@ export default function PokeDex({ pokemons, page }: PokeDexProps) {
         <title>Pokedex Page: {page}</title>
         <meta
           name="viewport"
-          content="initial-scale=1, maximum-scale=0.8, minimum-scale=0.8, width=500"
+          content="initial-scale=0.8, maximum-scale=0.8, minimum-scale=0.8, width=500"
         />
       </Head>
 
@@ -68,4 +68,9 @@ const StyledContainer = styled.div`
   bottom: 0px;
   padding: ${(p) => p.theme.unit(1)};
   background: ${(p: StyledContainerProps) => p.background};
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100%;
+  height: fit-content;
 `;

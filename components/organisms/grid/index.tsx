@@ -40,6 +40,7 @@ const StyledGrid = styled(Card)`
   flex-direction: row;
   flex-wrap: wrap;
   justify-content: center;
-  width: auto;
-  margin-top: auto;
+  padding-left: ${(p) => p.theme.unit(2)};
+  padding-right: ${(p) => p.theme.unit(2)};
+  margin: ${(p) => p.theme.unit(1)};
 `;

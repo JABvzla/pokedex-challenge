@@ -11,7 +11,7 @@ export function Paginate(props: PaginateProps) {
   return (
     <StyledPaginate>
       <div>
-        <span onClick={props.onPrev}> prev </span>
+        <span onClick={props.onPrev}>{"<"}</span>
         {props.page > 2 && (
           <PaginationButton
             value={props.page - 2}
@@ -33,7 +33,7 @@ export function Paginate(props: PaginateProps) {
           value={props.page + 2}
           onNavigate={props.onNavigate}
         />
-        <span onClick={props.onNext}> next </span>
+        <span onClick={props.onNext}>{">"}</span>
       </div>
     </StyledPaginate>
   );
