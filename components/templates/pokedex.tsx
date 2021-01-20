@@ -4,21 +4,18 @@ import styled from "styled-components";
 import { getColorByType } from "../../services/pokemon";
 import { DetailCard } from "../molecules";
 import { Grid } from "../organisms";
+import { useRouter } from "next/router";
 
-interface PokeDexProps {
-  pokemons: Pokemon[];
+export interface PokeDexProps {
   page: number;
-  nextUrl: string;
-  prevUrl: string;
+  pokemons: Pokemon[];
 }
 
-export default function PokeDex({
-  pokemons,
-  page,
-  nextUrl,
-  prevUrl,
-}: PokeDexProps) {
-  const navigate = (_url: string) => () => {};
+export default function PokeDex({ pokemons, page }: PokeDexProps) {
+  const router = useRouter();
+  const navigate = (page: string | number) => {
+    router.push({ query: { p: page } });
+  };
   const [selected, setSelected] = useState<number>(-1);
 
   const onSelect = (id: number) => () => {
@@ -48,10 +45,11 @@ export default function PokeDex({
         <Grid
           pokemons={pokemons}
           page={page}
-          onNext={navigate(nextUrl)}
-          onPrev={navigate(prevUrl)}
+          onNext={() => navigate(+page + 1)}
+          onPrev={() => navigate(+page - 1)}
           selected={selected}
           onSelect={onSelect}
+          onNavigate={navigate}
         />
       </StyledContainer>
     </div>

@@ -6,6 +6,7 @@ interface GridProps {
   page: number;
   onNext: () => void;
   onPrev: () => void;
+  onNavigate: (page: number) => void;
   onSelect: (id: number) => any;
   selected: number;
   pokemons: Pokemon[];
@@ -24,7 +25,12 @@ export function Grid(props: GridProps) {
           onSelect={props.onSelect(i)}
         />
       ))}
-      <Paginate page={props.page} onNext={props.onNext} onPrev={props.onPrev} />
+      <Paginate
+        page={props.page}
+        onNext={props.onNext}
+        onPrev={props.onPrev}
+        onNavigate={props.onNavigate}
+      />
     </StyledGrid>
   );
 }

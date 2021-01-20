@@ -1,4 +1,4 @@
-import PokeDex from "../components/templates/pokedex";
+import PokeDex, { PokeDexProps } from "../components/templates/pokedex";
 import { PAGIANTE_LIMIT } from "../contants/pagination-limit";
 import { getPokemonListPopulated } from "../services/pokemon";
 
@@ -9,14 +9,21 @@ interface HomeServerSideProps {
   };
 }
 
-export const getServerSideProps = async (context: HomeServerSideProps) => {
-  const { p = 0 } = context.query;
-  const pokemons = await getPokemonListPopulated(+p * PAGIANTE_LIMIT);
+interface ServerSidePropResult<T> {
+  props: T;
+}
+
+export const getServerSideProps = async (
+  context: HomeServerSideProps
+): ServerSidePropResult<PokeDexProps> => {
+  const { p = 1 } = context.query;
+  const page: number = p <= 0 || isNaN(+p) ? 1 : +p;
+  const result = await getPokemonListPopulated((page - 1) * PAGIANTE_LIMIT);
 
   return {
     props: {
-      page: p,
-      pokemons,
+      page,
+      pokemons: result.pokemons,
     },
   };
 };

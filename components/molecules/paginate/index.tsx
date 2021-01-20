@@ -4,23 +4,50 @@ interface PaginateProps {
   page: number;
   onNext: () => void;
   onPrev: () => void;
+  onNavigate: (page: number) => void;
 }
 
 export function Paginate(props: PaginateProps) {
   return (
     <StyledPaginate>
       <div>
-        <span onClick={props.onPrev}> back </span>
-        <span> 1 </span>
-        <span> 2 </span>
-        <span className="selected"> 3 </span>
-        <span> 4 </span>
-        <span> 5 </span>
+        <span onClick={props.onPrev}> prev </span>
+        {props.page > 2 && (
+          <PaginationButton
+            value={props.page - 2}
+            onNavigate={props.onNavigate}
+          />
+        )}
+        {props.page > 1 && (
+          <PaginationButton
+            value={props.page - 1}
+            onNavigate={props.onNavigate}
+          />
+        )}
+        <span className="selected">{props.page}</span>
+        <PaginationButton
+          value={props.page + 1}
+          onNavigate={props.onNavigate}
+        />
+        <PaginationButton
+          value={props.page + 2}
+          onNavigate={props.onNavigate}
+        />
         <span onClick={props.onNext}> next </span>
       </div>
     </StyledPaginate>
   );
 }
+
+interface PaginationButtonProps {
+  value: number;
+  onNavigate: (page: number) => void;
+}
+const PaginationButton = (props: PaginationButtonProps) => {
+  return (
+    <span onClick={() => props.onNavigate(props.value)}>{props.value}</span>
+  );
+};
 
 const StyledPaginate = styled.div`
   height: 20px;
