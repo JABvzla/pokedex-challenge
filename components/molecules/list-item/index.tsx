@@ -7,7 +7,7 @@ interface ListItemProps {
   name: string;
   avatar: string;
   selected: boolean;
-  onSelect?: (id: number) => void;
+  onSelect: (id: number) => void;
 }
 
 export function ListItem(props: ListItemProps) {
@@ -51,7 +51,9 @@ const StyledListItem = styled(Card)`
     !!props.selected &&
     `
     z-index: 999;
-    transform: scale(1.2);
+    transform: scale(1.3);
     top: -10px;
+    border: 1px solid #fff;
+
   `}
 `;

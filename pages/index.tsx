@@ -1,35 +1,8 @@
-import { useState } from "react";
-import { Grid } from "../components/organisms";
+import PokeDex from "../components/templates/pokedex";
 import { PAGIANTE_LIMIT } from "../contants/pagination-limit";
 import { getPokemonListPopulated } from "../services/pokemon";
 
-interface HomeProps {
-  pokemons: Pokemon[];
-  initialPage: number;
-}
-
-const usePagination = (p: number = 1) => {
-  const [page, setPage] = useState<number>(p);
-  const next = () => {
-    setPage(page + 1);
-  };
-  const prev = () => {
-    page > 1 && setPage(page - 1);
-  };
-
-  return { page, next, prev };
-};
-
-export default function Home({ pokemons, initialPage }: HomeProps) {
-  const { page, next, prev } = usePagination(initialPage);
-
-  return (
-    <div>
-      <Grid pokemons={pokemons} page={page} onNext={next} onPrev={prev} />
-    </div>
-  );
-}
-
+export default PokeDex;
 interface HomeServerSideProps {
   query: {
     p?: string;
@@ -37,12 +10,12 @@ interface HomeServerSideProps {
 }
 
 export const getServerSideProps = async (context: HomeServerSideProps) => {
-  const { p = 1 } = context.query;
+  const { p = 0 } = context.query;
   const pokemons = await getPokemonListPopulated(+p * PAGIANTE_LIMIT);
 
   return {
     props: {
-      initialPage: p,
+      page: p,
       pokemons,
     },
   };

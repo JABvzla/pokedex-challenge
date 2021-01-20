@@ -4,7 +4,7 @@ import { useTranslation } from "react-i18next";
 interface TextProps {
   align: "auto" | "center" | "justify" | "left" | "right";
   weidth: "100" | "normal" | "bolder" | "bold" | "900";
-  fontSize: number;
+  fontSize: number | string;
   keyText?: string;
   children?: string;
 }
