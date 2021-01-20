@@ -1,12 +1,12 @@
 import Head from "next/head";
+import { useRouter } from "next/router";
 import { useState } from "react";
 import styled from "styled-components";
-import { getColorByType } from "../../services/pokemon";
-import { DetailCard } from "../molecules";
-import { Grid } from "../organisms";
-import { Toggle } from "../atoms";
-import { useRouter } from "next/router";
 import { useLanguage } from "../../services/language/useLanguage";
+import { getColorByType } from "../../services/pokemon";
+import { Toggle } from "../atoms";
+import { DetailCard, MadeBy } from "../molecules";
+import { Grid } from "../organisms";
 
 export interface PokeDexProps {
   page: number;
@@ -58,6 +58,7 @@ export default function PokeDex({ pokemons, page }: PokeDexProps) {
           onSelect={onSelect}
           onNavigate={navigate}
         />
+        <MadeBy visible={selected != -1} />
       </StyledContainer>
     </div>
   );
