@@ -4,7 +4,9 @@ import styled from "styled-components";
 import { getColorByType } from "../../services/pokemon";
 import { DetailCard } from "../molecules";
 import { Grid } from "../organisms";
+import { Toggle } from "../atoms";
 import { useRouter } from "next/router";
+import { useLanguage } from "../../services/language/useLanguage";
 
 export interface PokeDexProps {
   page: number;
@@ -12,6 +14,7 @@ export interface PokeDexProps {
 }
 
 export default function PokeDex({ pokemons, page }: PokeDexProps) {
+  const { language, toggleLanguage } = useLanguage();
   const router = useRouter();
   const navigate = (page: string | number) => {
     router.push({ query: { p: page } });
@@ -39,8 +42,12 @@ export default function PokeDex({ pokemons, page }: PokeDexProps) {
           content="initial-scale=0.8, maximum-scale=0.8, minimum-scale=0.8, width=500"
         />
       </Head>
-
       <StyledContainer background={backgroundColor}>
+        <Toggle
+          text={language}
+          onToggle={toggleLanguage}
+          enabled={language === "en"}
+        />
         <DetailCard selected={selected != -1} pokemon={pokemons[selected]} />
         <Grid
           pokemons={pokemons}
@@ -73,4 +80,8 @@ const StyledContainer = styled.div`
   align-items: center;
   min-height: 100%;
   height: fit-content;
+  & > div:nth-child(1) {
+    margin-left: auto;
+    margin-right: ${(p) => p.theme.unit(1)};
+  }
 `;
