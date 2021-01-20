@@ -71,9 +71,11 @@ const StyledPaginate = styled.div`
       width: ${(p) => p.theme.unit(4)};
       height: ${(p) => p.theme.unit(4)};
       cursor: pointer;
-      &:hover {
-        color: ${(p) => p.theme.text};
-        background: ${(p) => p.theme.textAccent};
+      @media (hover: hover) and (pointer: fine) {
+        &:hover {
+          color: ${(p) => p.theme.text};
+          background: ${(p) => p.theme.textAccent};
+        }
       }
     }
     & span.selected {

@@ -44,7 +44,7 @@ const StyledLoader = styled.div`
   overflow: hidden;
   background: #a33;
   & > .content {
-    transition: all 0.5s;
+    transition: all 0s;
     opacity: 0;
   }
 
@@ -90,13 +90,12 @@ const StyledLoader = styled.div`
     !p.visible &&
     `
     & > .content {
+      transition: all 0.5s;
       opacity: 1;
     }
 
     & > img {
       opacity: 0; 
     }
-    overflow: auto;
-
   `}
 `;
